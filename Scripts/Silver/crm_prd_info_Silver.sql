@@ -1,3 +1,17 @@
+/*
+===============================================================================
+Script Purpose:
+    This script transforms and loads product data from the Bronze layer into
+    the Silver layer.
+Actions Performed:
+    - Removes existing data from the Silver product table.
+    - Inserts cleaned and standardized product records.
+    - Extracts category and product keys from composite product identifiers.
+    - Standardizes product line values into descriptive names.
+    - Handles missing cost values by replacing them with zero.
+    - Calculates product end dates using window functions.
+===============================================================================
+*/
 print '>> Truncating Data'
 truncate table Silver.crm_prd_info 
 print '>>> Inserting Data'
@@ -26,5 +40,6 @@ end prd_line,
 prd_start_dt,
 dateadd(day, -1,lead(prd_start_dt) over (partition by prd_key order by prd_start_dt))  as prd_end_dt
 from Bronze.crm_prd_info ; 
+
 
 
