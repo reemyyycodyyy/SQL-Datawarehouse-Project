@@ -8,6 +8,7 @@ The project covers the full lifecycle — from raw data ingestion to analytical 
 ---
 
 ## 🏛️ Data Architecture
+![Data Architecture](Documents/Data_Architecture.png)
 
 This project follows the **Medallion Architecture** design pattern (Bronze, Silver, Gold layers) to ensure scalable, maintainable, and analytics-ready data processing.
 
