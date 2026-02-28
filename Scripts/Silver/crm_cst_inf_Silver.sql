@@ -1,3 +1,16 @@
+/*
+===============================================================================
+Script Purpose:
+    This script cleanses and transforms customer data from the Bronze layer
+    before loading it into the Silver layer.
+Actions Performed:
+    - Removes existing data from the Silver customer table.
+    - Inserts cleaned and standardized customer records.
+    - Handles duplicate records by keeping only the latest entry per customer.
+    - Standardizes marital status and gender values.
+    - Converts date fields into proper date format.
+===============================================================================
+*/
 print '>> Truncating Data'
 truncate table silver.crm_cust_inf 
 print '>>> Inserting Data'
@@ -36,3 +49,4 @@ from (
     where cst_id is not null
 ) t
 where flag_last = 1;
+
